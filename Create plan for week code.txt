@@ -1,0 +1,49 @@
+Sub CreatWeek()
+
+Dim s As Worksheet
+Dim W As Worksheet
+
+Set s = ThisWorkbook.Sheets("Schedule")
+Set W = ThisWorkbook.Sheets("Week")
+
+
+W.Range("A4", "C40").ClearContents
+W.Range("E4", "G40").ClearContents
+
+For d = 9 To 18
+If s.Cells(4, d) = W.Cells(1, 2) Then
+For x = 10 To 200
+
+    If s.Cells(x, d) <> 0 Then
+    
+        If s.Cells(x, 2) <> 0 Then
+        
+            For t = 4 To 30
+            If Cells(t, 5) = 0 Then
+            W.Cells(t, 5) = s.Cells(x, 1)
+            W.Cells(t, 6) = s.Cells(x, 2)
+            W.Cells(t, 7) = s.Cells(x, 5)
+            Exit For
+            End If
+            Next t
+        
+        Else
+        
+            For t = 4 To 30
+            If W.Cells(t, 1) = 0 Then
+            W.Cells(t, 1) = s.Cells(x, 1)
+            W.Cells(t, 2) = s.Cells(x, 7)
+            W.Cells(t, 3) = s.Cells(x, 5)
+            Exit For
+            End If
+            Next t
+        
+        
+        End If
+    
+    End If
+    
+Next x
+End If
+Next d
+    
